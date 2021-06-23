@@ -1,4 +1,14 @@
 export default {
+  env: {
+    apiUrl:
+      process.env.API_URL ||
+      process.env.dev.API_URL ||
+      'http://localhost:3012/mh-toy/',
+  },
+  server: {
+    port: 3012,
+    host: '0.0.0.0',
+  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -37,6 +47,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
