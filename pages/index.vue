@@ -2,31 +2,50 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">mh-toy</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+      <h1 class="title" style="margin-bottom: 1000px">mh-toy</h1>
+      <button type="button" class="bg-rose-600 ..." disabled>
+        <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+          <!-- ... -->
+        </svg>
+        Processing
+      </button>
+      <ul class="space-y-8">
+        <!-- <li
+          v-for="(product, index) in products"
+          :key="product.id"
+          class="flex space-x-2"
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+          {{ index + 1 }} -- {{ product.title }}
+          <img v-lazy="product.imageUrl" class="object-cover w-40 h-40" />
+        </li> -->
+        <li v-for="(product, index) in 10" :key="index" class="flex space-x-2">
+          {{ index + 1 }}
+          <img
+            v-lazy="`https://picsum.photos/id/${index + 100}/200/300`"
+            class="object-cover w-40 h-40"
+          />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      products: {},
+    }
+  },
+  created() {
+    const api = `${process.env.apiUrl}/api/${process.env.API_PATH}/products/all`
+    this.$axios.get(api).then((res) => {
+      console.log(res.data)
+      this.products = res.data.products
+    })
+    console.log('api: ', api)
+  },
+}
 </script>
 
 <style>
