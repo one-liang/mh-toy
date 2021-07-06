@@ -9,10 +9,10 @@ export default {
     port: 3012,
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  // ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  // target: 'static',
   router: {
     base: '/mh-toy/',
   },
@@ -33,6 +33,12 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
+
+  // https://nuxtjs.org/docs/2.x/features/loading
+  loading: {
+    color: '#06B6D4',
+    height: '5px',
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: '~/plugins/vue-lazyload.js', mode: 'client' }],
