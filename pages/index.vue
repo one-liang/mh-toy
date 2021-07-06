@@ -10,14 +10,14 @@
         Processing
       </button>
       <ul class="space-y-8">
-        <!-- <li
+        <li
           v-for="(product, index) in products"
           :key="product.id"
           class="flex space-x-2"
         >
           {{ index + 1 }} -- {{ product.title }}
           <img v-lazy="product.imageUrl" class="object-cover w-40 h-40" />
-        </li> -->
+        </li>
         <li v-for="(product, index) in 10" :key="index" class="flex space-x-2">
           {{ index + 1 }}
           <img
@@ -32,18 +32,25 @@
 
 <script>
 export default {
+  async asyncData(context) {
+    const products = await context.$axios(
+      `${process.env.apiUrl}/api/${process.env.API_PATH}/products/all`
+    )
+    console.log('products.data: ', products.data)
+    return products.data
+  },
   data() {
     return {
       products: {},
     }
   },
   created() {
-    const api = `${process.env.apiUrl}/api/${process.env.API_PATH}/products/all`
-    this.$axios.get(api).then((res) => {
-      console.log(res.data)
-      this.products = res.data.products
-    })
-    console.log('api: ', api)
+    // const api = `${process.env.apiUrl}/api/${process.env.API_PATH}/products/all`
+    // this.$axios.get(api).then((res) => {
+    //   console.log(res.data)
+    //   this.products = res.data.products
+    // })
+    // console.log('api: ', api)
   },
 }
 </script>

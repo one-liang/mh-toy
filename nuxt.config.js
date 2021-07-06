@@ -21,7 +21,7 @@ export default {
   head: {
     title: 'mh-toy',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'zh-TW',
     },
     meta: [
       { charset: 'utf-8' },
